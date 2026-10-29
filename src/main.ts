@@ -299,7 +299,11 @@ function resize() {
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = aspect;
   camera.fov = aspect < 1 ? 50 : 45;
-  camera.position.set(0, aspect < 1 ? 62 : 17, aspect < 1 ? 24 : 19);
+  if (aspect < 1) {
+    // Portrait: look along the office's long (x) axis so it runs top-to-bottom, at a distance that fits its 22-unit depth to the screen width.
+    const dist = 12.5 / Math.tan(Math.atan(Math.tan(THREE.MathUtils.degToRad(25)) * aspect)), el = THREE.MathUtils.degToRad(72);
+    camera.position.set(dist * Math.cos(el), dist * Math.sin(el), controls.target.z);
+  } else camera.position.set(0, 17, 19);
   camera.updateProjectionMatrix();
 }
 
