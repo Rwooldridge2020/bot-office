@@ -1,0 +1,17 @@
+{
+  "name": "bot-office",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "devvars": "node -e \"const r=()=>require('crypto').randomBytes(18).toString('base64url');require('fs').writeFileSync('.dev.vars','SITE_PASSWORD='+(process.env.OFFICE_SITE_PASSWORD||r())+'\\nWRITE_TOKEN='+r()+'\\n',{mode:0o600})\"",
+    "dev": "npm run build && npm run devvars && wrangler dev"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5",
+    "wrangler": "^4.155.0"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

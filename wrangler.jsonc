@@ -1,0 +1,9 @@
+{
+  "name": "bot-office",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-09-01",
+  "assets": { "directory": "./dist", "binding": "ASSETS", "run_worker_first": true },
+  "durable_objects": { "bindings": [{ "name": "OFFICE", "class_name": "OfficeState" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["OfficeState"] }],
+  "triggers": { "crons": ["*/5 * * * *"] }
+}
